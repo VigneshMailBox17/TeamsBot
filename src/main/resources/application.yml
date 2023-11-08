@@ -1,0 +1,50 @@
+azure:
+  activedirectory:
+    # Specifies your Active Directory ID:
+    tenant-id: 0ef1eabd-1a8b-4359-a397-f07be39eab50
+    # Specifies your App Registration's Application ID:
+    client-id: dece4cac-3a2c-4001-95dd-12dfbb8ea720
+    # Specifies your App Registration's secret key:
+    client-secret: 07e8Q~M1BceU55bAWZqamkveB1YYpZ_92K66dapi
+    # Specifies the post-log-out-redirect-uri, where to return your app after logout.
+    post-logout-redirect-uri: http://localhost:8080
+    # Specifies the Microsoft Graph scopes that your app needs access to - not required in this app.
+    # authorization-clients:
+    #   graph:
+    #     scopes: https://graph.microsoft.com/User.Read
+    
+# which routes to restrict to authenticated users only (see SecurityConfig.java):
+# enter String array (comma-separated) or just one route.
+# e.g. authenticated: /route1, /route2, /route3
+app:
+  protect:
+    authenticated: /token_details
+
+# un-comment the following lines if you are deploying to a reverse proxy (e.g. Azure App Service)
+# server:
+#   forward-headers-strategy: native
+#   tomcat:
+#     remoteip:
+#       protocol-header: "X-Forwarded-Proto"
+#       remote-ip-header: "X-Forwarded-For"
+#       internal-proxies: ".*"
+
+url:
+  chat: https://graph.microsoft.com/v1.0/chats
+  chatMessage: https://graph.microsoft.com/v1.0/chats/{chatId}/messages
+  
+spring:
+  h2:
+    console.enabled: true
+    console:
+      path: /h2-console
+      settings.trace: false
+      settings.web-allow-others: false
+  datasource:
+    url: jdbc:h2:file:D:/Vicky/DB/file
+    driverClassName: org.h2.Driver
+    username: admin
+    password: admin
+  jpa: 
+    database-platform: org.hibernate.dialect.H2Dialect
+    
